@@ -34,11 +34,9 @@ class SchemaTest extends KernelTestCase
             )
         );
 
-        $this->assertEquals("CREATE TABLE TestEntityCreated (id INTEGER NOT NULL, created DATETIME DEFAULT NULL, PRIMARY KEY(id));
-CREATE TABLE TestEntityUpdated (id INTEGER NOT NULL, update_me VARCHAR(255) DEFAULT NULL, updated DATETIME DEFAULT NULL, PRIMARY KEY(id));
-CREATE TABLE TestEntityDeleted (id INTEGER NOT NULL, deleted DATETIME DEFAULT NULL, PRIMARY KEY(id));
-CREATE TABLE TestEntityIsDeleted (id INTEGER NOT NULL, is_deleted BOOLEAN DEFAULT '0' NOT NULL, PRIMARY KEY(id));
-", $commandTester->getDisplay());
-
+        $this->assertNotFalse(strpos($commandTester->getDisplay(), 'CREATE TABLE TestEntityCreated (id INTEGER NOT NULL, created DATETIME DEFAULT NULL, PRIMARY KEY(id));'));
+        $this->assertNotFalse(strpos($commandTester->getDisplay(), 'CREATE TABLE TestEntityUpdated (id INTEGER NOT NULL, update_me VARCHAR(255) DEFAULT NULL, updated DATETIME DEFAULT NULL, PRIMARY KEY(id));'));
+        $this->assertNotFalse(strpos($commandTester->getDisplay(), 'CREATE TABLE TestEntityDeleted (id INTEGER NOT NULL, deleted DATETIME DEFAULT NULL, PRIMARY KEY(id));'));
+        $this->assertNotFalse(strpos($commandTester->getDisplay(), 'CREATE TABLE TestEntityIsDeleted (id INTEGER NOT NULL, is_deleted BOOLEAN DEFAULT \'0\' NOT NULL, PRIMARY KEY(id));'));
     }
 }
