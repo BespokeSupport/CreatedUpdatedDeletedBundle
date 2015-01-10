@@ -1,5 +1,5 @@
 {
-    "name": "BespokeSupport/CreatedUpdatedDeletedBundle",
+    "name": "bespoke-support/created-updated-deleted-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Bundle to add Created Updated and Deleted columns to entities",
     "license": "MIT",
