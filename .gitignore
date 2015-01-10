@@ -1,0 +1,36 @@
+# IntelliJ - PhpStorm and PyCharm
+.idea
+.idea/
+.idea/*
+*.iml
+*.ipr
+*.iws
+
+# Netbeans
+nbproject
+.nbproject
+.nbproject/*
+nbproject/*
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# composer
+# Composer
+vendor
+vendor/*
+!public/assets/js/vendor
+!public/assets/js/vendor/*
+!public/assets/css/vendor
+!public/assets/css/vendor/*
+composer.phar
+composer.lock
+
+# build Symfony - for tests
+/build/coverage.html
+/build/logs/
+/build/tmp/*
+!/build/tmp/.gitkeep

@@ -1,0 +1,16 @@
+services:
+
+  bespokesupport.createdupdateddeleted.listener.created:
+      class: BespokeSupport\CreatedUpdatedDeletedBundle\Service\CudCreatedListener
+      tags:
+          - { name: doctrine.event_listener, event: prePersist }
+
+  bespokesupport.createdupdateddeleted.listener.updated:
+      class: BespokeSupport\CreatedUpdatedDeletedBundle\Service\CudUpdatedListener
+      tags:
+          - { name: doctrine.event_listener, event: preUpdate }
+
+  bespokesupport.createdupdateddeleted.listener.deleted:
+      class: BespokeSupport\CreatedUpdatedDeletedBundle\Service\CudDeletedListener
+      tags:
+          - { name: doctrine.event_listener, event: onFlush }

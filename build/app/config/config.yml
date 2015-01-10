@@ -1,0 +1,28 @@
+framework:
+    secret:          PhpUnitTesting
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            ~
+    csrf_protection: ~
+    session:         ~
+    default_locale:  en
+    translator:      { fallback: en }
+    profiler:        { only_exceptions: false }
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: pdo_sqlite
+                memory: true
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                mappings:
+                    BespokeSupportCreatedUpdatedDeletedBundle:
+                        mapping: true
+                        type: annotation
+                        prefix: BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities
+                        dir: %kernel.root_dir%/../../Tests/TestEntities
+                        is_bundle: false

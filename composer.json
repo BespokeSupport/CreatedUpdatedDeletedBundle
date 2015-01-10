@@ -1,0 +1,26 @@
+{
+    "name": "BespokeSupport/CreatedUpdatedDeletedBundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Bundle to add Created Updated and Deleted columns to entities",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Seymour",
+            "email": "web@bespoke.support"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BespokeSupport\\CreatedUpdatedDeletedBundle\\": "src/",
+            "BespokeSupport\\CreatedUpdatedDeletedBundle\\Tests\\": "Tests/"
+        }
+    },
+    "require" : {
+        "php" : ">5.4"
+    },
+    "require-dev" : {
+        "symfony/symfony" : "~2.6",
+        "doctrine/orm" : "~2.4",
+        "doctrine/doctrine-bundle" : "~1.3"
+    }
+}

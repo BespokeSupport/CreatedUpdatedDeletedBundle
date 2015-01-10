@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+umask(0000);
+
+set_time_limit(0);
+
+require_once __DIR__.'/bootstrap.php';
+
+require_once __DIR__.'/AppKernel.php';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+
+$kernel = new AppKernel('test', true);
+
+$application = new Application($kernel);
+
+$application->run();
