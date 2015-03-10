@@ -1,10 +1,5 @@
 # IntelliJ - PhpStorm and PyCharm
-.idea
-.idea/
-.idea/*
-*.iml
-*.ipr
-*.iws
+/.idea/
 
 # Netbeans
 nbproject

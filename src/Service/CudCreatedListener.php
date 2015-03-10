@@ -31,7 +31,9 @@ class CudCreatedListener
             /**
              * @var $entity \BespokeSupport\CreatedUpdatedDeletedBundle\Traits\EntityCreatedTrait
              */
-            $entity->setCreated(new \DateTime());
+            if (!$entity->getCreated()) {
+                $entity->setCreated(new \DateTime());
+            }
         }
     }
 }

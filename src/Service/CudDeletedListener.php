@@ -45,7 +45,7 @@ class CudDeletedListener
                 //soft delete
                 $entity->setDeleted(true);
                 $entityManager->persist($entity);
-                $unitOfWork->scheduleExtraUpdate($entity, array('is_deleted'=> array(0, 1)));
+                $unitOfWork->scheduleExtraUpdate($entity, array('deleted'=> array(0, 1)));
             }
 
             if (in_array('BespokeSupport\CreatedUpdatedDeletedBundle\Traits\EntityDeletedTrait', $traits)) {
