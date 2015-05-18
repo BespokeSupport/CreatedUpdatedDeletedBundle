@@ -43,18 +43,12 @@ trait EntityDeletedTrait
      * @param \DateTime $deleted
      * @return $this
      */
-    public function setDeleted(\DateTime $deleted)
+    public function setDeleted(\DateTime $deleted = null)
     {
         $this->deleted = $deleted;
+        if (property_exists(self, 'is_deleted')){
+            $this->isDeleted(true);
+        }
         return $this;
-    }
-    /**
-     * isDeleted()
-     *
-     * @return boolean
-     */
-    public function isDeleted()
-    {
-        return ($this->deleted) ? true : false;
     }
 }

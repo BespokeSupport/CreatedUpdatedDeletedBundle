@@ -27,7 +27,7 @@ trait EntityIsDeletedTrait
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false, options={"default"=false})
      * @Assert\Type("bool")
      */
-    protected $deleted = false;
+    protected $isDeleted = false;
     /**
      * isDeleted()
      *
@@ -35,16 +35,7 @@ trait EntityIsDeletedTrait
      */
     public function isDeleted()
     {
-        return $this->deleted;
-    }
-    /**
-     * isDeleted()
-     *
-     * @return boolean
-     */
-    public function getDeleted()
-    {
-        return $this->deleted;
+        return $this->isDeleted;
     }
     /**
      * setDeleted()
@@ -52,9 +43,9 @@ trait EntityIsDeletedTrait
      * @param boolean $deleted
      * @return $this
      */
-    public function setDeleted($deleted)
+    public function setIsDeleted($deleted)
     {
-        $this->deleted = ($deleted) ? true : false;
+        $this->isDeleted = ($deleted) ? true : false;
         return $this;
     }
 }
