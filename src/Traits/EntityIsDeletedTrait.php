@@ -28,6 +28,7 @@ trait EntityIsDeletedTrait
      * @Assert\Type("bool")
      */
     protected $isDeleted = false;
+
     /**
      * isDeleted()
      *
@@ -37,6 +38,7 @@ trait EntityIsDeletedTrait
     {
         return $this->isDeleted;
     }
+
     /**
      * setDeleted()
      *

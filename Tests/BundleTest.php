@@ -10,9 +10,7 @@ class BundleTest extends WebTestCase
     {
         static::bootKernel();
         $this->assertNotNull(self::$kernel);
-        /**
-         * @var $subscriber \BespokeSupport\CreatedUpdatedDeletedBundle\Service\DoctrineSubscriberCreatedUpdatedDeleted
-         */
+
         $container = self::$kernel->getContainer();
         $this->assertNotNull($container);
 

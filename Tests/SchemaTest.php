@@ -5,9 +5,7 @@ namespace BespokeSupport\CreatedUpdatedDeletedBundle\Tests;
 use Doctrine\Bundle\DoctrineBundle\Command\Proxy\UpdateSchemaDoctrineCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-use Symfony\Component\Console\Tests\Command\CommandTest;
 
 class SchemaTest extends KernelTestCase
 {

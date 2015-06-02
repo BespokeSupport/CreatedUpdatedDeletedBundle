@@ -23,7 +23,7 @@ class ServiceDoctrineTest extends KernelTestCase
      */
     protected static $doctrine;
 
-    public static function setUpBeforeClass()
+    public function setUp()
     {
         self::bootKernel();
 
@@ -96,19 +96,16 @@ class ServiceDoctrineTest extends KernelTestCase
         // save the entity - not deleted
         self::$entityManager->persist($entity);
         self::$entityManager->flush();
-        $this->assertFalse($entity->getDeleted());
         $this->assertFalse($entity->isDeleted());
 
         // soft delete the entity
         self::$entityManager->remove($entity);
         self::$entityManager->flush();
-        $this->assertNotNull($entity->getDeleted());
         $this->assertTrue($entity->isDeleted());
 
         // reload entity
         $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityIsDeleted', 1);
         $this->assertNotNull($entity);
-        $this->assertNotNull($entity->getDeleted());
         $this->assertTrue($entity->isDeleted());
 
         // hard delete the entity
@@ -129,19 +126,16 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->persist($entity);
         self::$entityManager->flush();
         $this->assertNull($entity->getDeleted());
-        $this->assertFalse($entity->isDeleted());
 
         // soft delete the entity
         self::$entityManager->remove($entity);
         self::$entityManager->flush();
         $this->assertNotNull($entity->getDeleted());
-        $this->assertTrue($entity->isDeleted());
 
         // reload entity
         $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityDeleted', 1);
         $this->assertNotNull($entity);
         $this->assertNotNull($entity->getDeleted());
-        $this->assertTrue($entity->isDeleted());
 
         // hard delete the entity
         self::$entityManager->remove($entity);
@@ -154,38 +148,37 @@ class ServiceDoctrineTest extends KernelTestCase
 
     public function testTwoUpdates()
     {
-        // 1 used above
+        $entity1 = new TestEntityUpdated();
         $entity2 = new TestEntityUpdated();
-        $entity3 = new TestEntityUpdated();
+        self::$entityManager->persist($entity1);
         self::$entityManager->persist($entity2);
-        self::$entityManager->persist($entity3);
         self::$entityManager->flush();
 
         // reload the entities
+        $entity1 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 1);
         $entity2 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 2);
-        $entity3 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 3);
 
+        $this->assertNotNull($entity1);
+        $this->assertNull($entity1->getUpdated());
         $this->assertNotNull($entity2);
         $this->assertNull($entity2->getUpdated());
-        $this->assertNotNull($entity3);
-        $this->assertNull($entity3->getUpdated());
 
         // update something on the entity
+        $entity1->updateMe = 'UPDATING';
         $entity2->updateMe = 'UPDATING';
-        $entity3->updateMe = 'UPDATING';
 
+        self::$entityManager->persist($entity1);
         self::$entityManager->persist($entity2);
-        self::$entityManager->persist($entity3);
         self::$entityManager->flush();
 
+        $this->assertNotNull($entity1->getUpdated());
         $this->assertNotNull($entity2->getUpdated());
-        $this->assertNotNull($entity3->getUpdated());
 
         // reload the entities
+        $entity1 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 1);
         $entity2 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 2);
-        $entity3 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 3);
 
+        $this->assertNotNull($entity1->getUpdated());
         $this->assertNotNull($entity2->getUpdated());
-        $this->assertNotNull($entity3->getUpdated());
     }
 }

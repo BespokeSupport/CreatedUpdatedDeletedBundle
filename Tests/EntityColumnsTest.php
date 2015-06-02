@@ -73,7 +73,7 @@ class EntityPropertiesTest extends KernelTestCase
         $this->assertArrayHasKey('id', $meta->columnNames);
         $this->assertEquals('integer', $meta->fieldMappings['id']['type']);
 
-        $this->assertArrayHasKey('is_deleted', $meta->columnNames);
-        $this->assertEquals('boolean', $meta->fieldMappings['is_deleted']['type']);
+        $this->assertArrayHasKey('isDeleted', $meta->columnNames);
+        $this->assertEquals('boolean', $meta->fieldMappings['isDeleted']['type']);
     }
 }

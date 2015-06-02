@@ -26,6 +26,7 @@ trait EntityUpdatedTrait
      * @Assert\Type("\DateTime")
      */
     protected $updated;
+
     /**
      * getUpdated()
      *
@@ -35,15 +36,14 @@ trait EntityUpdatedTrait
     {
         return $this->updated;
     }
+
     /**
      * setUpdated()
      *
      * @param \DateTime $updated
-     * @return $this
      */
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
-        return $this;
     }
 }

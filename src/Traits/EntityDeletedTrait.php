@@ -28,6 +28,7 @@ trait EntityDeletedTrait
      * @Assert\Type("\DateTime")
      */
     protected $deleted = null;
+
     /**
      * getDeleted()
      *
@@ -37,18 +38,14 @@ trait EntityDeletedTrait
     {
         return $this->deleted;
     }
+
     /**
      * setDeleted()
      *
      * @param \DateTime $deleted
-     * @return $this
      */
     public function setDeleted(\DateTime $deleted = null)
     {
         $this->deleted = $deleted;
-        if (property_exists(self, 'is_deleted')){
-            $this->isDeleted(true);
-        }
-        return $this;
     }
 }

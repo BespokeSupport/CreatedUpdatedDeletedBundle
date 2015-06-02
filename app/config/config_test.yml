@@ -1,12 +1,3 @@
-framework:
-    secret:          PhpUnitTesting
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
-    form:            ~
-    csrf_protection: ~
-    session:         ~
-    default_locale:  en
-    translator:      { fallback: en }
-    profiler:        { only_exceptions: false }
 
 doctrine:
     dbal:
@@ -24,5 +15,4 @@ doctrine:
                         mapping: true
                         type: annotation
                         prefix: BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities
-                        dir: %kernel.root_dir%/../../Tests/TestEntities
-                        is_bundle: false
+                        dir: './Tests/TestEntities'

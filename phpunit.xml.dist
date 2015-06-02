@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="build/app/bootstrap.tests.php"
+         bootstrap="./bootstrap.tests.php"
 >
 
     <testsuites>

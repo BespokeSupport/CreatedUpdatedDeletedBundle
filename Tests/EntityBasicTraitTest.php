@@ -62,7 +62,7 @@ class EntityBasicTraitTest extends WebTestCase
         $methods = get_class_methods($entity);
         $this->assertTrue((in_array('getDeleted', $methods)));
         $this->assertTrue((in_array('setDeleted', $methods)));
-        $this->assertTrue((in_array('isDeleted', $methods)));
+//        $this->assertTrue((in_array('isDeleted', $methods)));
 
         $properties = get_class_vars('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityDeleted');
         $this->assertCount(0, $properties);
@@ -72,7 +72,7 @@ class EntityBasicTraitTest extends WebTestCase
         $entity->setDeleted(new \DateTime());
 
         $this->assertNotNull($entity->getDeleted());
-        $this->assertTrue($entity->isDeleted());
+//        $this->assertTrue($entity->isDeleted());
     }
 
     public function testIsDeleted()
@@ -83,18 +83,13 @@ class EntityBasicTraitTest extends WebTestCase
         $this->assertArrayHasKey('BespokeSupport\CreatedUpdatedDeletedBundle\Traits\EntityIsDeletedTrait', $uses);
 
         $methods = get_class_methods($entity);
-        $this->assertTrue((in_array('getDeleted', $methods)));
-        $this->assertTrue((in_array('setDeleted', $methods)));
+        $this->assertTrue((in_array('setIsDeleted', $methods)));
         $this->assertTrue((in_array('isDeleted', $methods)));
 
         $properties = get_class_vars('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityIsDeleted');
         $this->assertCount(0, $properties);
 
-        $this->assertFalse($entity->getDeleted());
-
-        $entity->setDeleted(true);
-
-        $this->assertTrue($entity->getDeleted());
+        $entity->setIsDeleted(true);
         $this->assertTrue($entity->isDeleted());
     }
 }

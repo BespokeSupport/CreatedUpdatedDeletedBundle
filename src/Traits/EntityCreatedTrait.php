@@ -25,6 +25,7 @@ trait EntityCreatedTrait
      * @Assert\Type("\DateTime")
      */
     protected $created;
+
     /**
      * DateTime of entity creation
      *
@@ -34,6 +35,7 @@ trait EntityCreatedTrait
     {
         return $this->created;
     }
+
     /**
      * Set DateTime of Entity Creation
      *
@@ -43,6 +45,5 @@ trait EntityCreatedTrait
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
-        return $this;
     }
 }
