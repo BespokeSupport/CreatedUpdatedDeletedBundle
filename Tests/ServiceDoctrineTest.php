@@ -50,12 +50,17 @@ class ServiceDoctrineTest extends KernelTestCase
         $eventManager = self::$entityManager->getEventManager();
 
         $listeners = $eventManager->getListeners();
-
         $this->assertCount(1, $listeners['prePersist']);
         $this->assertCount(1, $listeners['preUpdate']);
         $this->assertCount(1, $listeners['onFlush']);
     }
 
+    public function testFilters()
+    {
+        $filters = self::$entityManager->getFilters();
+        $this->assertTrue($filters->isEnabled('deleted'));
+//        $filters->en
+    }
 
 
     public function testCreated()

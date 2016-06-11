@@ -11,8 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "BespokeSupport\\CreatedUpdatedDeletedBundle\\": "src/",
-            "BespokeSupport\\CreatedUpdatedDeletedBundle\\Tests\\": "Tests/"
+            "BespokeSupport\\CreatedUpdatedDeletedBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "BespokeSupport\\CreatedUpdatedDeletedBundle\\Tests\\": "Tests/"
         }
     },
     "require" : {
