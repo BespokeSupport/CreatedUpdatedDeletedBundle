@@ -22,6 +22,7 @@ class CudDeletedListener
      * setDeleted()
      *
      * @param OnFlushEventArgs $args
+     * @throws \Doctrine\ORM\ORMException
      */
     public function onFlush(OnFlushEventArgs $args)
     {

@@ -17,15 +17,19 @@ class ServiceDoctrineTest extends KernelTestCase
      * @var \Doctrine\ORM\EntityManager
      */
     protected static $entityManager;
-
     /**
      * @var \Doctrine\Bundle\DoctrineBundle\Registry
      */
     protected static $doctrine;
 
+    /**
+     *
+     */
     public function setUp()
     {
-        self::bootKernel();
+        self::bootKernel([
+            'debug' => false,
+        ]);
 
         self::$entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
         self::$doctrine = self::$kernel->getContainer()->get('doctrine');
@@ -38,13 +42,16 @@ class ServiceDoctrineTest extends KernelTestCase
 
         $commandTester = new CommandTester($command);
         $commandTester->execute(
-            array(
+            [
                 'command' => $command->getName(),
-                '--force' => true
-            )
+                '--force' => true,
+            ]
         );
     }
 
+    /**
+     *
+     */
     public function testListeners()
     {
         $eventManager = self::$entityManager->getEventManager();
@@ -55,14 +62,30 @@ class ServiceDoctrineTest extends KernelTestCase
         $this->assertCount(1, $listeners['onFlush']);
     }
 
+    /**
+     *
+     */
     public function testFilters()
     {
         $filters = self::$entityManager->getFilters();
         $this->assertTrue($filters->isEnabled('deleted'));
-//        $filters->en
     }
 
+    /**
+     *
+     */
+    public function testWhere()
+    {
+        $repo = self::$entityManager->getRepository(TestEntityUpdated::class);
+        $entity = $repo->findOneBy(['id' => 1]);
+        $this->assertNull($entity);
+    }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
     public function testCreated()
     {
         $entity = new TestEntityCreated();
@@ -70,10 +93,15 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->flush();
         $this->assertNotNull($entity->getCreated());
 
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityCreated', 1);
+        $entity = self::$entityManager->find(TestEntityCreated::class, 1);
         $this->assertNotNull($entity->getCreated());
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
     public function testUpdated()
     {
         $entity = new TestEntityUpdated();
@@ -82,7 +110,7 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->persist($entity);
         self::$entityManager->flush();
 
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 1);
+        $entity = self::$entityManager->find(TestEntityUpdated::class, 1);
         $this->assertNull($entity->getUpdated());
 
         // update something on the entity
@@ -94,6 +122,11 @@ class ServiceDoctrineTest extends KernelTestCase
         $this->assertNotNull($entity->getUpdated());
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
     public function testIsDelete()
     {
         $entity = new TestEntityIsDeleted();
@@ -109,7 +142,7 @@ class ServiceDoctrineTest extends KernelTestCase
         $this->assertTrue($entity->isDeleted());
 
         // reload entity
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityIsDeleted', 1);
+        $entity = self::$entityManager->find(TestEntityIsDeleted::class, 1);
         $this->assertNotNull($entity);
         $this->assertTrue($entity->isDeleted());
 
@@ -118,11 +151,15 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->flush();
 
         // entity removed
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityIsDeleted', 1);
+        $entity = self::$entityManager->find(TestEntityIsDeleted::class, 1);
         $this->assertNull($entity);
     }
 
-
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
     public function testDelete()
     {
         $entity = new TestEntityDeleted();
@@ -138,7 +175,7 @@ class ServiceDoctrineTest extends KernelTestCase
         $this->assertNotNull($entity->getDeleted());
 
         // reload entity
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityDeleted', 1);
+        $entity = self::$entityManager->find(TestEntityDeleted::class, 1);
         $this->assertNotNull($entity);
         $this->assertNotNull($entity->getDeleted());
 
@@ -147,10 +184,15 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->flush();
 
         // entity removed
-        $entity = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityDeleted', 1);
+        $entity = self::$entityManager->find(TestEntityDeleted::class, 1);
         $this->assertNull($entity);
     }
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     */
     public function testTwoUpdates()
     {
         $entity1 = new TestEntityUpdated();
@@ -160,8 +202,8 @@ class ServiceDoctrineTest extends KernelTestCase
         self::$entityManager->flush();
 
         // reload the entities
-        $entity1 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 1);
-        $entity2 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 2);
+        $entity1 = self::$entityManager->find(TestEntityUpdated::class, 1);
+        $entity2 = self::$entityManager->find(TestEntityUpdated::class, 2);
 
         $this->assertNotNull($entity1);
         $this->assertNull($entity1->getUpdated());
@@ -180,8 +222,8 @@ class ServiceDoctrineTest extends KernelTestCase
         $this->assertNotNull($entity2->getUpdated());
 
         // reload the entities
-        $entity1 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 1);
-        $entity2 = self::$entityManager->find('BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdated', 2);
+        $entity1 = self::$entityManager->find(TestEntityUpdated::class, 1);
+        $entity2 = self::$entityManager->find(TestEntityUpdated::class, 2);
 
         $this->assertNotNull($entity1->getUpdated());
         $this->assertNotNull($entity2->getUpdated());

@@ -11,7 +11,9 @@ class SchemaTest extends KernelTestCase
 {
     public static function setUpBeforeClass()
     {
-        self::bootKernel();
+        static::bootKernel([
+            'debug' => false
+        ]);
     }
 
     public function testCreate()

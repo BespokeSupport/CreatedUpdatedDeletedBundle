@@ -26,14 +26,14 @@ class DeletedFilter extends SQLFilter
      */
     public function addFilterConstraint(ClassMetadata $targetEntity, $tableAlias)
     {
-        $columns = array_values($targetEntity->columnNames);
-
-        if (in_array("is_deleted", $columns)) {
-            return $tableAlias.'.is_deleted = 0';
+        if (in_array('isDeleted', $targetEntity->fieldNames)) {
+            $field = array_search('isDeleted', $targetEntity->fieldNames);
+            return "$tableAlias.$field = 0";
         }
 
-        if (in_array("deleted", $columns)) {
-            return $tableAlias.'.deleted IS NULL';
+        if (in_array('deleted', $targetEntity->fieldNames)) {
+            $field = array_search('deleted', $targetEntity->fieldNames);
+            return "$tableAlias.$field IS NULL";
         }
 
         return "";

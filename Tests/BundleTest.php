@@ -8,7 +8,10 @@ class BundleTest extends WebTestCase
 {
     public function testLoad()
     {
-        static::bootKernel();
+        static::bootKernel([
+            'debug' => false
+        ]);
+
         $this->assertNotNull(self::$kernel);
 
         $container = self::$kernel->getContainer();

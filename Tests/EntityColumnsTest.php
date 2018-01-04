@@ -13,7 +13,9 @@ class EntityPropertiesTest extends KernelTestCase
 
     public static function setUpBeforeClass()
     {
-        self::bootKernel();
+        static::bootKernel([
+            'debug' => false
+        ]);
 
         self::$entityManager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
@@ -31,7 +33,6 @@ class EntityPropertiesTest extends KernelTestCase
         $this->assertArrayHasKey('created', $meta->columnNames);
         $this->assertEquals('datetime', $meta->fieldMappings['created']['type']);
     }
-
 
     public function testEntityUpdated()
     {

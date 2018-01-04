@@ -40,7 +40,6 @@ trait EntityCreatedTrait
      * Set DateTime of Entity Creation
      *
      * @param \DateTime $created
-     * @return $this
      */
     public function setCreated(\DateTime $created)
     {

@@ -20,12 +20,13 @@
         }
     },
     "require" : {
-        "php" : ">5.4",
-        "symfony/symfony" : "~2|~3",
-        "doctrine/orm" : "~2|~3",
-        "doctrine/doctrine-bundle" : "~1.3"
+        "php" : "~5.4|~7",
+        "doctrine/orm" : "@stable",
+        "doctrine/doctrine-bundle" : "@stable"
     },
     "require-dev" : {
-      "bespoke-support/symfony-test-application": "dev-master"
+        "symfony/yaml": "~2|~3|~4",
+        "symfony/validator": "~2|~3|~4",
+        "bespoke-support/symfony-test-application": "dev-master"
     }
 }

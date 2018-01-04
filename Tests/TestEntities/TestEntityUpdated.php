@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class TestEntityUpdated
  * @package BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="BespokeSupport\CreatedUpdatedDeletedBundle\Tests\TestEntities\TestEntityUpdatedRepository")
  */
 class TestEntityUpdated
 {
