@@ -27,9 +27,10 @@ trait EntityIsDeletedTrait
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false, options={"default"=false})
      * @Assert\Type("bool")
      */
-    protected $isDeleted = false;
+    public $isDeleted = false;
 
     /**
+     * @deprecated
      * isDeleted()
      *
      * @return boolean
@@ -40,6 +41,7 @@ trait EntityIsDeletedTrait
     }
 
     /**
+     * @deprecated
      * setDeleted()
      *
      * @param boolean $deleted

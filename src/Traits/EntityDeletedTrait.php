@@ -27,9 +27,10 @@ trait EntityDeletedTrait
      * @ORM\Column(name="deleted", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */
-    protected $deleted = null;
+    public $deleted = null;
 
     /**
+     * @deprecated
      * getDeleted()
      *
      * @return \DateTime|null
@@ -40,6 +41,7 @@ trait EntityDeletedTrait
     }
 
     /**
+     * @deprecated
      * setDeleted()
      *
      * @param \DateTime $deleted

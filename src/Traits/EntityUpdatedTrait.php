@@ -25,9 +25,10 @@ trait EntityUpdatedTrait
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */
-    protected $updated;
+    public $updated;
 
     /**
+     * @deprecated
      * getUpdated()
      *
      * @return null|\DateTime
@@ -38,6 +39,7 @@ trait EntityUpdatedTrait
     }
 
     /**
+     * @deprecated
      * setUpdated()
      *
      * @param \DateTime $updated

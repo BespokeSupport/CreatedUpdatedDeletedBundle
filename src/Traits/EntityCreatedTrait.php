@@ -24,9 +24,10 @@ trait EntityCreatedTrait
      * @ORM\Column(name="created", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */
-    protected $created;
+    public $created;
 
     /**
+     * @deprecated
      * DateTime of entity creation
      *
      * @return null|\DateTime
@@ -37,6 +38,7 @@ trait EntityCreatedTrait
     }
 
     /**
+     * @deprecated
      * Set DateTime of Entity Creation
      *
      * @param \DateTime $created
