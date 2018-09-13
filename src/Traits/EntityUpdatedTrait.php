@@ -22,6 +22,7 @@ trait EntityUpdatedTrait
     /**
      * Updated DateTime - null on persist - DateTime after each subsequent update
      *
+     * @var \DateTime|null
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */

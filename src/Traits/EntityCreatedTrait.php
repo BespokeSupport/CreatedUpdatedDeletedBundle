@@ -21,6 +21,8 @@ trait EntityCreatedTrait
 {
     /**
      * Created DateTime
+     *
+     * @var \DateTime|null
      * @ORM\Column(name="created", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */

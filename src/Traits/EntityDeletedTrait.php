@@ -24,10 +24,11 @@ trait EntityDeletedTrait
      * 1st entity manager remove() causes DateTime - soft delete
      * 2nd entity manager remove() causes hard deletion of row
      *
+     * @var \DateTime|null
      * @ORM\Column(name="deleted", type="datetime", nullable=true)
      * @Assert\Type("\DateTime")
      */
-    public $deleted = null;
+    public $deleted;
 
     /**
      * @deprecated

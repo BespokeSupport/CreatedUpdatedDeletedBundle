@@ -24,6 +24,7 @@ trait EntityIsDeletedTrait
      * 1st entity manager remove() causes True - soft delete
      * 2nd entity manager remove() causes hard deletion of row
      *
+     * @var bool
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false, options={"default"=false})
      * @Assert\Type("bool")
      */
